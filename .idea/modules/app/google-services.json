@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "848975642382",
+    "firebase_url": "https://find-tec.firebaseio.com",
+    "project_id": "find-tec",
+    "storage_bucket": "find-tec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848975642382:android:5b0097796d2e46ea60215f",
+        "android_client_info": {
+          "package_name": "com.iohann.find_tec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848975642382-aiqr0e54ips589j1a738dm4u5htore5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iohann.find_tec",
+            "certificate_hash": "1538af6234959adf501362c98d9353447298a252"
+          }
+        },
+        {
+          "client_id": "848975642382-6a484or0qipfnft0po5pup84v46lb56g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANUYBUnUiFUZD4W7hKDOEVgO_W84b6544"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848975642382-6a484or0qipfnft0po5pup84v46lb56g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848975642382:android:f337ebebdeb5983460215f",
+        "android_client_info": {
+          "package_name": "com.iohann.projeto_danilo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848975642382-fd0bvvqmr7cljus0hcdaur89s3gtgd23.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iohann.projeto_danilo",
+            "certificate_hash": "1538af6234959adf501362c98d9353447298a252"
+          }
+        },
+        {
+          "client_id": "848975642382-6a484or0qipfnft0po5pup84v46lb56g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANUYBUnUiFUZD4W7hKDOEVgO_W84b6544"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848975642382-6a484or0qipfnft0po5pup84v46lb56g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
