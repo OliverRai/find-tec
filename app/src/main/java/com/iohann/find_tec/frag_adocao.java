@@ -36,6 +36,7 @@ public class frag_adocao extends Fragment {
     private List<TecnicoUser> mUploads;
     private FirebaseStorage mStorage;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,13 +83,9 @@ public class frag_adocao extends Fragment {
         mAdapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                TecnicoUser clickedTecnico = mUploads.get(position);
-                String[] tecnicosDados = {clickedTecnico.getNome(), clickedTecnico.getCidade()};
-                openDetailActivity(tecnicosDados);
-            }
-
-            public void onLikeClick(int position) {
-                mUploads.get(position);
+                    TecnicoUser tec = mUploads.get(position);
+                    String[] tecnicoDados = {tec.getNome(), tec.getPreco(), tec.getmImageUrl(), tec.getCidade(), tec.getMkey()};
+                    openDetailActivity(tecnicoDados);
             }
         });
 

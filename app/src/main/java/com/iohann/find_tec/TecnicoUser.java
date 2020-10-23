@@ -4,7 +4,7 @@ import com.google.firebase.database.Exclude;
 
 public class TecnicoUser {
 
-    private String cidade, rua, cep, estado, email, telefone, nome, mkey, mImageUrl, preco;
+    private String cidade, rua, cep, estado, email, telefone, nome, mkey, mImageUrl, preco, desc;
     private int position;
 
     public TecnicoUser() {
@@ -78,6 +78,13 @@ public class TecnicoUser {
         this.telefone = telefone;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     @Exclude
     public String getMkey() {

@@ -66,7 +66,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.RecyclerView
             mNome = itemView.findViewById(R.id.txtModeloNome);
             imagemPostagem = itemView.findViewById(R.id.imgModelo);
 
-            imagemPostagem.setOnClickListener(new View.OnClickListener() {
+            mNome.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mListener != null) {
@@ -80,7 +80,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.RecyclerView
 
         }
     }
-
 
     public interface OnItemClickListener {
         void onItemClick(int position);

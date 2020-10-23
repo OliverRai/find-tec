@@ -6,28 +6,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:backgroundTint="#FFF"
     android:orientation="vertical"
     tools:context=".Detalhe">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnvoltar"
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/grey"
+                android:clickable="true"
+                app:srcCompat="@drawable/voltar_icon" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar3"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:layout_weight="1"
+                android:theme="?attr/actionBarTheme">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="FINDTEC"
+                    android:textStyle="bold"
+                    android:layout_marginRight="80dp"
+                    android:textSize="20sp" />
+
+            </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
         android:layout_height="695dp">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imgAvatar"
-                    android:layout_width="match_parent"
-                    android:layout_height="199dp"
-                    tools:srcCompat="@tools:sample/avatars" />
 
                 <TextView
                     android:text="Informações"
@@ -42,6 +84,7 @@
 
                 <TextView
                     android:text="Nome:"
+                    android:layout_marginTop="10dp"
                     android:textSize="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/txtn"/>
@@ -58,6 +101,7 @@
                 <TextView
                     android:text="Endereço:"
                     android:textSize="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/txte"/>
                 <TextView
@@ -73,6 +117,7 @@
                 <TextView
                     android:text="Número de Telefone:"
                     android:textSize="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/taxte"/>
                 <TextView
@@ -88,6 +133,7 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content">
                     <TextView
                         android:text="Cidade:"
@@ -104,9 +150,12 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" android:id="@+id/txtCidade" android:layout_weight="1"/>
+                        android:id="@+id/txtCidade"
+                        android:layout_width="28dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="1" />
                     <TextView
                         android:layout_width="29dp"
                         android:layout_height="match_parent" android:id="@+id/txtEstado" android:layout_weight="1"/>
@@ -119,6 +168,7 @@
                 <TextView
                     android:text="Email: "
                     android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
                     android:textSize="20dp"
                     android:layout_height="wrap_content" android:id="@+id/textView26"/>
                 <TextView
@@ -136,6 +186,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:text="Preço:"
+                    android:layout_marginTop="10dp"
                     android:textSize="20dp"
                     android:layout_height="wrap_content" android:id="@+id/Sasdaas"/>
                 <TextView
@@ -147,6 +198,17 @@
                     android:layout_height="1dp"
                     android:background="#000000"
                     android:focusable="false"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Descrição:"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content" android:id="@+id/Sasdaaaas"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/txtDesc"/>
+
 
 
             </LinearLayout>

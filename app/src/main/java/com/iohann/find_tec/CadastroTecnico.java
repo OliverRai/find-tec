@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +31,7 @@ import com.squareup.picasso.Picasso;
 
 public class CadastroTecnico extends AppCompatActivity {
 
-    private EditText cidade, rua, preco, estado, telefone, nome, email;
+    private EditText cidade, rua, preco, estado, telefone, nome, email, desc;
     private Button cadastrar;
     private LinearLayout adicionaFoto;
     private ImageButton voltar;
@@ -52,6 +53,7 @@ public class CadastroTecnico extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_tecnico);
         inicializaComponentes();
         eventosClicks();
+
     }
 
     public void  eventosClicks(){
@@ -82,8 +84,10 @@ public class CadastroTecnico extends AppCompatActivity {
                 final String edtTelefone = telefone.getText().toString().trim();
                 final String edtPreco = preco.getText().toString().trim();
                 final String edtEmail = email.getText().toString().trim();
+                final String edtDesc = desc.getText().toString().trim();
                 addFoto.setEnabled(false);
                 cidade.setEnabled(false);
+                desc.setEnabled(false);
                 nome.setEnabled(false);
                 rua.setEnabled(false);
                 estado.setEnabled(false);
@@ -91,7 +95,7 @@ public class CadastroTecnico extends AppCompatActivity {
                 email.setEnabled(false);
                 telefone.setEnabled(false);
                 cadastrar.setEnabled(false);
-                if (edtEmail.equals("") || edtCidade.equals("") || edtNome.equals("") || edtRua.equals("") || edtEstado.equals("")||edtPreco.equals("")
+                if (edtDesc.equals("") || edtEmail.equals("") || edtCidade.equals("") || edtNome.equals("") || edtRua.equals("") || edtEstado.equals("")||edtPreco.equals("")
                         || edtTelefone.equals("") || mImageUri == null){
                     alert("Preencha todos os campos");
                     addFoto.setEnabled(true);
@@ -99,6 +103,7 @@ public class CadastroTecnico extends AppCompatActivity {
                     cidade.setEnabled(true);
                     estado.setEnabled(true);
                     rua.setEnabled(true);
+                    desc.setEnabled(true);
                     telefone.setEnabled(true);
                     nome.setEnabled(true);
                     email.setEnabled(true);
@@ -122,6 +127,7 @@ public class CadastroTecnico extends AppCompatActivity {
                             tec.setCidade(edtCidade);
                             tec.setPreco(edtPreco);
                             tec.setNome(edtNome);
+                            tec.setDesc(edtDesc);
                             tec.setEmail(edtEmail);
                             tec.setEstado(edtEstado);
                             tec.setTelefone(edtTelefone);
@@ -151,7 +157,9 @@ public class CadastroTecnico extends AppCompatActivity {
         email.setEnabled(true);
         telefone.setEnabled(true);
         cadastrar.setEnabled(true);
+        desc.setEnabled(true);
         cidade.setText("");
+        desc.setText("");
         rua.setText("");
         estado.setText("");
         preco.setText("");
@@ -171,6 +179,7 @@ public class CadastroTecnico extends AppCompatActivity {
     }
 
     public void inicializaComponentes(){
+        desc = (EditText) findViewById(R.id.edtDescricao);
         nome = (EditText) findViewById(R.id.edtNome);
         email = (EditText) findViewById(R.id.edtEmail);
         cidade = (EditText) findViewById(R.id.edtCidade);

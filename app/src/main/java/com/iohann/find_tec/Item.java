@@ -1,90 +1,77 @@
 package com.iohann.find_tec;
 
+
+import android.net.Uri;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 public class Item {
 
-    public Item(){
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+
+    public Item() {
+        // Required empty public constructor
     }
 
-    private String cidade, rua, cep, estado, email, telefone, nome, mkey, mImageUrl, preco;
 
-    public String getCidade() {
-        return cidade;
+    private void conectaFirebase(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+    public void verificaUsuario(final String nomeTec, String cidadeTec,  final TextView txtdesc, final TextView txtEmail, final TextView txtNome, final TextView txtCidade, final TextView txtEstado,
+                                final TextView txtPreco, final TextView txtNumTelefone, final TextView txtRua) {
+        conectaFirebase();
 
-    public String getRua() {
-        return rua;
-    }
+        databaseReference=FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Uploads").child("Tecnicos").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        if (nomeTec.equals(postSnapshot.child("nome").getValue(String.class))) {
+                            String nome = postSnapshot.child("nome").getValue(String.class);
+                            String email = postSnapshot.child("email").getValue(String.class);
+                            String cidade = postSnapshot.child("cidade").getValue(String.class);
+                            String estado = postSnapshot.child("estado").getValue(String.class);
+                            String rua = postSnapshot.child("rua").getValue(String.class);
+                            String numero = postSnapshot.child("telefone").getValue(String.class);
+                            String preco = postSnapshot.child("preco").getValue(String.class);
+                            String desc = postSnapshot.child("desc").getValue(String.class);
 
-    public String getCep() {
-        return cep;
-    }
+                            txtNome.setText(nomeTec);
+                            txtdesc.setText(desc);
+                            txtCidade.setText(cidade);
+                            txtEmail.setText(email);
+                            txtEstado.setText(estado);
+                            txtRua.setText(rua);
+                            txtNumTelefone.setText(numero);
+                            txtPreco.setText(preco);
+                        }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+                    }   }
+            }
 
-    public String getEstado() {
-        return estado;
-    }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getMkey() {
-        return mkey;
-    }
-
-    public void setMkey(String mkey) {
-        this.mkey = mkey;
-    }
-
-    public String getmImageUrl() {
-        return mImageUrl;
-    }
-
-    public void setmImageUrl(String mImageUrl) {
-        this.mImageUrl = mImageUrl;
-    }
-
-    public String getPreco() {
-        return preco;
-    }
-
-    public void setPreco(String preco) {
-        this.preco = preco;
+            }
+        });
     }
 
 }
+
+

@@ -8,11 +8,12 @@
         />
 
     <solid
-        android:color="#fff"
+        android:color="#04D361"
+
         />
 
     <stroke
-        android:width="2dp"
+        android:width="1dp"
         android:color="@android:color/background_dark"
         />
 
