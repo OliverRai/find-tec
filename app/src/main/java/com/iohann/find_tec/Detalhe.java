@@ -1,17 +1,22 @@
 package com.iohann.find_tec;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Detalhe extends AppCompatActivity {
 
@@ -19,7 +24,8 @@ public class Detalhe extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ImageButton voltar;
-    private String nomeTec, cidadeTec;
+    private String nomeTec, cidadeTec, telefoneTec;
+    private Button btnliga, enviarEmail;
 
 
     public Detalhe() {
@@ -29,6 +35,8 @@ public class Detalhe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe);
+        enviarEmail = (Button) findViewById(R.id.btnEmail);
+        btnliga = (Button) findViewById(R.id.btnLigr);
         voltar = (ImageButton) findViewById(R.id.btnvoltar);
 
         voltarClick();
@@ -36,6 +44,63 @@ public class Detalhe extends AppCompatActivity {
         Intent i = getIntent();
         nomeTec = i.getExtras().getString("CIDADE_KEY");
         cidadeTec = i.getExtras().getString("NOME_KEY");
+        telefoneTec = i.getExtras().getString("TELEFONE_KEY");
+
+        btnliga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                conectaFirebase();
+
+                databaseReference=FirebaseDatabase.getInstance().getReference();
+                databaseReference.child("Uploads").child("Tecnicos").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            if (nomeTec.equals(postSnapshot.child("nome").getValue(String.class))) {
+                                String tel = postSnapshot.child("telefone").getValue(String.class);
+                                Uri uri = Uri.parse("tel:" + tel);
+                                Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                                System.out.println(uri);
+
+                                startActivity(intent);
+                    }}}}
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
+        enviarEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                conectaFirebase();
+
+                databaseReference=FirebaseDatabase.getInstance().getReference();
+                databaseReference.child("Uploads").child("Tecnicos").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                if (nomeTec.equals(postSnapshot.child("nome").getValue(String.class))) {
+                                    String email = postSnapshot.child("email").getValue(String.class);
+                                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                                    intent.setData(Uri.parse("mailto:" + email)); // only email apps should handle this
+                                    intent.putExtra(Intent.EXTRA_EMAIL, email);
+                                    intent.putExtra(Intent.EXTRA_SUBJECT, "Assistência Técnica");
+                                    if (intent.resolveActivity(getPackageManager()) != null) {
+                                        startActivity(intent);
+                                    }
+                                }}}}
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
 
 
         conectaFirebase();
